@@ -1,0 +1,25 @@
+SELECT
+  Date AS order_date,
+  CategoryName AS category_name,
+  ProdName AS product_name,
+  Price AS product_price,
+  Quantity AS order_qty,
+  Price*Quantity AS total_sales,
+  CustomerEmail AS cust_email,
+  CustomerCity AS cust_city
+FROM
+  rakamin.orders
+INNER JOIN
+  rakamin.customers
+ON
+  orders.CustomerID = customers.CustomerID
+INNER JOIN
+  rakamin.products
+ON
+  orders.ProdNumber = products.ProdNumber
+INNER JOIN
+  rakamin.productcategory
+ON
+  products.Category = productcategory.CategoryID
+ORDER BY
+  order_date ASC;
